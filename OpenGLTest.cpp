@@ -3,6 +3,7 @@
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow* window);
 
 int main()
 {
@@ -36,6 +37,9 @@ int main()
 	// rendering loop
 	while (!glfwWindowShouldClose(window))
 	{
+		// input
+		processInput(window);
+
 		// call events and swap the buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -44,6 +48,12 @@ int main()
 	// Clear all resources alocated by GLFW
 	glfwTerminate();
 	return 0;
+}
+
+void processInput(GLFWwindow* window)
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
 }
 
 // Whenever the window's size is changed this callback function is executed
